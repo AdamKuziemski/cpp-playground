@@ -43,7 +43,7 @@ public:
 class DumpEvent : public LogEvent
 {
 public:
-  DumpEvent(const std::map<std::string, std::string>& dump);
+  DumpEvent(const std::map<std::string, std::string>& dump, std::string title = "", bool showQuotes = false);
 };
 
 /*************
@@ -62,10 +62,16 @@ public:
   Logger();
   ~Logger() {close();}
 
-  void operator()(LogEvent);
-  void operator()(std::string);
+  void operator()(LogEvent e) {addEvent(e);}
+  void operator()(std::string s) {addEvent(LogEvent(s));}
+  void operator()(std::string s, int i) {addEvent(s, i);}
+  void operator()(std::string s, double d) {addEvent(s, d);}
+  void operator()(std::string s, bool b) {addEvent(s, b);}
   void addEvent(LogEvent);
   void addEvent(std::string);
+  void addEvent(std::string, int);
+  void addEvent(std::string, double);
+  void addEvent(std::string, bool);
   void separator();
   void close();
 

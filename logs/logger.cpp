@@ -20,16 +20,6 @@ Logger::Logger()
        <<"\n</head>\n<body>";
 }
 
-void Logger::operator()(LogEvent e)
-{
-  addEvent(e);
-}
-
-void Logger::operator()(std::string s)
-{
-  addEvent(LogEvent(s));
-}
-
 void Logger::addEvent(LogEvent e)
 {
   file <<"\n  <p><font color=#"<< adjustColor(e.getColor()) <<">"
@@ -39,6 +29,27 @@ void Logger::addEvent(LogEvent e)
 void Logger::addEvent(std::string s)
 {
   addEvent(LogEvent(s));
+}
+
+void Logger::addEvent(std::string s, bool b)
+{
+  std::ostringstream sout;
+  sout << s <<" = "<< std::boolalpha << b;
+  addEvent(LogEvent(sout.str()));
+}
+
+void Logger::addEvent(std::string s, int i)
+{
+  std::ostringstream sout;
+  sout << s <<" = "<< i;
+  addEvent(LogEvent(sout.str()));
+}
+
+void Logger::addEvent(std::string s, double d)
+{
+  std::ostringstream sout;
+  sout << s <<" = "<< d;
+  addEvent(LogEvent(sout.str()));
 }
 
 void Logger::separator()
@@ -92,12 +103,15 @@ std::string Logger::timestamp()
   return time.substr(0, time.size() - 1); // strip '\n' character
 }
 
-DumpEvent::DumpEvent(const std::map<std::string, std::string>& dump) : LogEvent("[DUMP]<br>\n", 0x000000, "")
+DumpEvent::DumpEvent(const std::map<std::string, std::string>& dump, std::string title, bool showQuotes)
+: LogEvent("[DUMP] " + title + "<br>\n", 0x000000, "")
 {
+  std::string quote = showQuotes ? "\"" : "";
+
   content = "    <table>\n      <tr><th><b>Key</b></th><th><b>Value</b></th></tr>\n";
 
   for(auto it = dump.begin(); it != dump.end(); ++it)
-    content += "      <tr><td>" + it->first + "</td><td>" + it->second + "</td></tr>\n";
+    content += "      <tr><td>" + quote + it->first + quote + "</td><td>" + quote + it->second + quote + "</td></tr>\n";
 
   content += "    </table>\n  ";
 }
