@@ -22,30 +22,6 @@ public:
   std::string getContent() {return content;}
 };
 
-class ErrorEvent : public LogEvent
-{
-public:
-  ErrorEvent(std::string content) : LogEvent("[ERROR] ", 0xD6280D, content) {}
-};
-
-class InfoEvent : public LogEvent
-{
-public:
-  InfoEvent(std::string content) : LogEvent("[INFO] ", 0x1C77ED, content) {}
-};
-
-class SuccessEvent : public LogEvent
-{
-public:
-  SuccessEvent(std::string content) : LogEvent("[SUCCESS] ", 0x08A124, content) {}
-};
-
-class DumpEvent : public LogEvent
-{
-public:
-  DumpEvent(const std::map<std::string, std::string>& dump, std::string title = "", bool showQuotes = false);
-};
-
 /*************
 *** Logger ***
 *************/
@@ -64,14 +40,21 @@ public:
 
   void operator()(LogEvent e) {addEvent(e);}
   void operator()(std::string s) {addEvent(LogEvent(s));}
-  void operator()(std::string s, int i) {addEvent(s, i);}
-  void operator()(std::string s, double d) {addEvent(s, d);}
-  void operator()(std::string s, bool b) {addEvent(s, b);}
+  void operator()(std::string s, int i) {variable(s, i);}
+  void operator()(std::string s, double d) {variable(s, d);}
+  void operator()(std::string s, bool b) {variable(s, b);}
+
   void addEvent(LogEvent);
   void addEvent(std::string);
-  void addEvent(std::string, int);
-  void addEvent(std::string, double);
-  void addEvent(std::string, bool);
+
+  void variable(std::string, int);
+  void variable(std::string, double);
+  void variable(std::string, bool);
+  void error(std::string content) {addEvent(LogEvent("[ERROR] ", 0xD6280D, content));}
+  void info(std::string content) {addEvent(LogEvent("[INFO] ", 0x1C77ED, content));}
+  void success(std::string content) {addEvent(LogEvent("[SUCCESS] ", 0x08A124, content));}
+  void dump(const std::map<std::string, std::string>& data, std::string title = "", bool quotes = false);
+
   void separator();
   void close();
 

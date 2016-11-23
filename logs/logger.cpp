@@ -31,25 +31,40 @@ void Logger::addEvent(std::string s)
   addEvent(LogEvent(s));
 }
 
-void Logger::addEvent(std::string s, bool b)
+void Logger::variable(std::string s, bool b)
 {
   std::ostringstream sout;
   sout << s <<" = "<< std::boolalpha << b;
-  addEvent(LogEvent(sout.str()));
+  addEvent(LogEvent("[VARIABLE] " + sout.str()));
 }
 
-void Logger::addEvent(std::string s, int i)
+void Logger::variable(std::string s, int i)
 {
   std::ostringstream sout;
   sout << s <<" = "<< i;
-  addEvent(LogEvent(sout.str()));
+  addEvent(LogEvent("[VARIABLE] " + sout.str()));
 }
 
-void Logger::addEvent(std::string s, double d)
+void Logger::variable(std::string s, double d)
 {
   std::ostringstream sout;
   sout << s <<" = "<< d;
-  addEvent(LogEvent(sout.str()));
+  addEvent(LogEvent("[VARIABLE] " + sout.str()));
+}
+
+void Logger::dump(const std::map<std::string, std::string>& data, std::string title, bool showQuotes)
+{
+  std::string quote = showQuotes ? "\"" : "";
+
+  std::string prefix = "[DUMP] " + title + "<br>\n";
+  std::string content = "    <table>\n      <tr><th><b>Key</b></th><th><b>Value</b></th></tr>\n";
+
+  for(auto it = data.begin(); it != data.end(); ++it)
+    content += "      <tr><td>" + quote + it->first + quote + "</td><td>" + quote + it->second + quote + "</td></tr>\n";
+
+  content += "    </table>\n  ";
+
+  addEvent(LogEvent(prefix, 0x000000, content));
 }
 
 void Logger::separator()
@@ -101,17 +116,4 @@ std::string Logger::timestamp()
   }
 
   return time.substr(0, time.size() - 1); // strip '\n' character
-}
-
-DumpEvent::DumpEvent(const std::map<std::string, std::string>& dump, std::string title, bool showQuotes)
-: LogEvent("[DUMP] " + title + "<br>\n", 0x000000, "")
-{
-  std::string quote = showQuotes ? "\"" : "";
-
-  content = "    <table>\n      <tr><th><b>Key</b></th><th><b>Value</b></th></tr>\n";
-
-  for(auto it = dump.begin(); it != dump.end(); ++it)
-    content += "      <tr><td>" + quote + it->first + quote + "</td><td>" + quote + it->second + quote + "</td></tr>\n";
-
-  content += "    </table>\n  ";
 }
