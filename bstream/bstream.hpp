@@ -1,3 +1,9 @@
+/**
+*** This is a set of wrapper classes providing binary input/output in the same way that std::iostream does.
+*** It's kind of proof of concept, but it's also useful if you want to simplify (un)serialization.
+*** I'm using unions for more explicit type conversion.
+**/
+
 #pragma once
 /** STL **/
 #include <iostream>
@@ -22,7 +28,7 @@ public:
   template<typename T>
   T get() // read any aggregate or basic type
   {
-    const size_t len = sizeof(T); // length of the array
+    static constexpr size_t len = sizeof(T); // length of the array
     union // easy type converting
     {
       T val;
@@ -60,7 +66,7 @@ public:
   template<typename T>
   void put(T w) // write any aggregate or basic type
   {
-    const size_t len = sizeof(T); // length of the array
+    static constexpr size_t len = sizeof(T); // length of the array
     union // easy type converting
     {
       T val;
