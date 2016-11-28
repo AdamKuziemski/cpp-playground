@@ -1,3 +1,8 @@
+/**
+*** This is a set of tools for enum class objects.
+*** Provides advancing and converting enums to/from their underlying types.
+**/
+
 #pragma once
 
 /// STL
