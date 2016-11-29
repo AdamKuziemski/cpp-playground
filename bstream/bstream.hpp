@@ -1,7 +1,6 @@
 /**
 *** This is a set of wrapper classes providing binary input/output in the same way that std::iostream does.
-*** It's kind of proof of concept, but it's also useful if you want to simplify (un)serialization.
-*** I'm using unions for more explicit type conversion.
+*** The unions are proof of concept, but the classes itself are useful if you want to simplify (un)serialization.
 **/
 
 #pragma once
