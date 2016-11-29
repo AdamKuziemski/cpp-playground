@@ -1,3 +1,15 @@
+/**
+*** This is purely a toy.
+*** I mean, you could use it for displaying dialogues in a jRPG.
+*** Or sending packets at random intervals.
+*** Or playing distracting sounds in a game.
+*** Or something.
+*** This comment looks like this on purpose.
+*** It would be funny if metaprogrammed.
+*** Yep. I'm evil.
+*** Anyways, thanks for reading!
+**/
+
 #include <iostream>
 #include <chrono>
 #include <thread>
