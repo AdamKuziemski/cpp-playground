@@ -26,32 +26,6 @@ void Logger::addEvent(LogEvent e)
        << e.getPrefix() << e.getContent() <<"</font></p>";
 }
 
-void Logger::addEvent(std::string s)
-{
-  addEvent(LogEvent(s));
-}
-
-void Logger::variable(std::string s, bool b)
-{
-  std::ostringstream sout;
-  sout << s <<" = "<< std::boolalpha << b;
-  addEvent(LogEvent("[VARIABLE] " + sout.str()));
-}
-
-void Logger::variable(std::string s, int i)
-{
-  std::ostringstream sout;
-  sout << s <<" = "<< i;
-  addEvent(LogEvent("[VARIABLE] " + sout.str()));
-}
-
-void Logger::variable(std::string s, double d)
-{
-  std::ostringstream sout;
-  sout << s <<" = "<< d;
-  addEvent(LogEvent("[VARIABLE] " + sout.str()));
-}
-
 void Logger::dump(const std::map<std::string, std::string>& data, std::string title, bool showQuotes)
 {
   std::string quote = showQuotes ? "\"" : "";
@@ -65,11 +39,6 @@ void Logger::dump(const std::map<std::string, std::string>& data, std::string ti
   content += "    </table>\n  ";
 
   addEvent(LogEvent(prefix, 0x000000, content));
-}
-
-void Logger::separator()
-{
-  file <<"\n  <hr>";
 }
 
 void Logger::close()
