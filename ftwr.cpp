@@ -11,7 +11,7 @@ void typeText(string text, int showFor = 0, bool clear = true)
   for(char c : text)
   {
     cout << c;
-    // sleep for random times to achieve the effect of typing
+    // sleep for random amounts of time to achieve the effect of typing
     this_thread::sleep_for(chrono::milliseconds(40 + (mt() % 460)));
   }
 
@@ -25,11 +25,8 @@ void typeText(string text, int showFor = 0, bool clear = true)
 int main()
 {
   typeText("Wake up, Neo...", 3000);
-  //cout << "\r               \r";
   typeText("The Matrix has you...", 3000);
-  //cout << "\r                     \r";
   typeText("Follow the white rabbit.", 3000);
-  //cout << "\r                        \r";
   cout << "Knock, knock, Neo.\a";
 
   return 0;
