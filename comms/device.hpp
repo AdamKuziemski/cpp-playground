@@ -1,3 +1,11 @@
+/**
+*** WARNING: DO NOT USE THIS CODE AS RELIABLE.
+*** The class Comms::Device is a part of a work-in-progress.
+*** So far it only provides basic functionality with absolutely zero security.
+*** It's going to be a simple interface for communicating between apps/computers,
+*** created mostly to clean up the final code from unnecessary repetitions.
+**/
+
 #pragma once
 
 /// SDL
