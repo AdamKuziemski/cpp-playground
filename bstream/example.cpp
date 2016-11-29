@@ -18,7 +18,7 @@ int main()
   double d;
   bool b;
   char c;
-  const char _ = ' '; // I hate the apostrophes
+  const char _ = ' '; // I hate the apostrophes. Kappa
 
   bistream bin("board.dat");
 
