@@ -23,7 +23,7 @@ void typeText(string text, int showFor = 0, bool clear = true)
   for(char c : text)
   {
     cout << c;
-    // sleep for random amounts of time to achieve the effect of typing
+    // sleep for random times to achieve the effect of typing
     this_thread::sleep_for(chrono::milliseconds(40 + (mt() % 460)));
   }
 
@@ -31,7 +31,7 @@ void typeText(string text, int showFor = 0, bool clear = true)
     this_thread::sleep_for(chrono::milliseconds(showFor));
 
   if(clear)
-    cout <<'\r'<< string(text.size(), " ") <<'\r';
+    cout <<'\r'<< string(text.size(), ' ') <<'\r';
 }
 
 int main()
@@ -43,3 +43,4 @@ int main()
 
   return 0;
 }
+
