@@ -39,23 +39,23 @@ public:
   ~Logger() {close();}
 
   void operator()(LogEvent e) {addEvent(e);}
-  void operator()(std::string s) {addEvent(LogEvent(s));}
+  void operator()(std::string s) {addEvent(s);}
   void operator()(std::string s, int i) {variable(s, i);}
   void operator()(std::string s, double d) {variable(s, d);}
   void operator()(std::string s, bool b) {variable(s, b);}
 
   void addEvent(LogEvent);
-  void addEvent(std::string);
+  void addEvent(std::string s) {addEvent(LogEvent(s));}
 
-  void variable(std::string, int);
-  void variable(std::string, double);
-  void variable(std::string, bool);
+  void variable(std::string s, int i) {addEvent("[VARIABLE] " + s + " = " + std::to_string(i));}
+  void variable(std::string s, double d) {addEvent("[VARIABLE] " + s + " = " + std::to_string(d));}
+  void variable(std::string s, bool b) {addEvent("[VARIABLE] " + s + " is " + (b ? "true" : "false"));}
   void error(std::string content) {addEvent(LogEvent("[ERROR] ", 0xD6280D, content));}
   void info(std::string content) {addEvent(LogEvent("[INFO] ", 0x1C77ED, content));}
   void success(std::string content) {addEvent(LogEvent("[SUCCESS] ", 0x08A124, content));}
   void dump(const std::map<std::string, std::string>& data, std::string title = "", bool quotes = false);
 
-  void separator();
+  void separator() {file <<"\n  <hr>";}
   void close();
 
   Logger(const Logger&) = delete;
