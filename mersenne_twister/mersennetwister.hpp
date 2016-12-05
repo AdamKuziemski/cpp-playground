@@ -1,3 +1,7 @@
+/**
+*** This is a simple implementation of a Mersenne Twister pseudo-random number generator.
+**/
+
 #pragma once
 /** STL **/
 #include <cstdint>
