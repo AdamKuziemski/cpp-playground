@@ -1,6 +1,6 @@
 ## Dice Rolls
 
-I've created this project inspired by [this post](http://www.redblobgames.com/articles/probability/damage-rolls.html). My project lets you use any type of dice and then "cheat" with it. I imagine this could be useful if we want to increase the game difficulty by creating an AI that has better rolls on the same type of spell/weapon/etc, or by making the player's attacks or accuracy rolls worse.
+I've created this project inspired by [this post](http://www.redblobgames.com/articles/probability/damage-rolls.html). My project lets you use any type of dice and then "cheat" with it. I imagine this could be useful if we wanted to increase the game difficulty by creating an AI that has better rolls on the same type of spell/weapon/etc, or by making the player's attacks or accuracy rolls worse.
 
 ### So now that we've got down the idea...
 
@@ -18,7 +18,7 @@ There are a few different types of cheats you can use to load your dice. There's
 
 * **HigherRollCheater** rolls a dice twice and returns the higher of results.
 * **LowerRollCheater** rolls a dice twice and returns the lower of results.
-* **CoinFlipCheater** rolls two dice and returns one of the result, based on a `rand() % 2` roll.
+* **CoinFlipCheater** rolls two dice and returns one of the results, based on a `rand() % 2` roll.
 * **DoubleRollOnChance** rolls a dice and performs a percent-based probability check of a second roll, then returns the appropriate result.
 * **DoubleValueOnChance** rolls a dice and performs a percent-based probability check of a double roll value, then returns the appropriate result.
 
