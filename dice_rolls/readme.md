@@ -24,7 +24,7 @@ There are a few different types of cheats you can use to load your dice. There's
 
 ### TODO
 
-* **UniqueValueCheater** will roll an unique value of a dice until it runs out of values (will reset itself)
+* **UniqueValueCheater** will roll a unique result every time, until it runs out of possible results (will reset itself)
 * **DoubleRollIfHigherThan**
 * **DoubleValueIfHigherThan**
 * **DoubleRollIfLowerThan**
