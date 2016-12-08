@@ -14,7 +14,7 @@ Let's get to the classes. The library provides five dice types:
 
 ### And for the cheats...
 
-There are a few different types of cheats you can use to load your dice. There's a basic cheat class called **DiceCheater** (duh) inheriting from **UncappedDice** that provides a base for every cheat. It contains a `shared_ptr` to the Dice you want to load. This means you can "stack" cheats on top of each other to achieve different distribution of possible results. Cool, huh?
+There are a few different types of cheats you can use to load your dice. There's a basic cheat class called **DiceCheater** (duh) inheriting from **UncappedDice** that provides a base for every cheat. It contains a `shared_ptr` to the Dice you want to load. This means you can "stack" cheats on top of each other like decorators to achieve different distribution of possible results. Cool, huh?
 
 * **HigherRollCheater** rolls a dice twice and returns the higher of results.
 * **LowerRollCheater** rolls a dice twice and returns the lower of results.
