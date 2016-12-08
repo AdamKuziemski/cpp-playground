@@ -8,7 +8,7 @@ Let's get to the classes. The library provides five dice types:
 
 * **Dice** is a basic class for every type of dice to inherit from. It provides basic functionality like generating pseudo-random numbers and performing rolls. It also provides two tool classes: **Range** - which is used for getting possible roll results - and **Iterator** - which can be used like any iterator from STL. The **Dice** class is designed to be abstract so it can't be instantiated.
 * **SimpleDice** is a type of dice we normally encounter in games - the most common being `d6`, which is the standard dice everyone knows and also the default constructor for the class. RPG players also know `d4`, `d10`, `d12`, `d20` and so on. You can also provide a shift value so your rolls can reflect real RPG rolls like `3d6 + 10`.
-* **UncappedDice** is a dice that can't be capped by result bounds. For example, a capped 2d6 + 4 roll won't go over 12, while an uncapped roll can.
+* **UncappedDice** is a dice that can't be capped by result bounds. For example, a capped `2d6 + 4` roll won't go over 12, while an uncapped roll can.
 * **RangedDice** rolls numbers from a given range, say, `[20, 30]` or `(12, 40]`. You can set it up to be left- or right- inclusive or exclusive if you like. It's both inclusive by default.
 * **CustomValuedDice** will only return values from a given set of results, like `{4, 13, 16, 42, 96}`.
 
