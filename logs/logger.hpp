@@ -32,7 +32,8 @@ class Logger
   std::ofstream file;
 
   std::string adjustColor(int);
-  std::string timestamp();
+
+  bool alwaysFlush = true;
 
 public:
   Logger();
@@ -43,6 +44,7 @@ public:
   void operator()(std::string s, int i) {variable(s, i);}
   void operator()(std::string s, double d) {variable(s, d);}
   void operator()(std::string s, bool b) {variable(s, b);}
+  void operator()(std::string s, size_t z) {variable(s, z);}
 
   void addEvent(LogEvent);
   void addEvent(std::string s) {addEvent(LogEvent(s));}
@@ -50,13 +52,19 @@ public:
   void variable(std::string s, int i) {addEvent("[VARIABLE] " + s + " = " + std::to_string(i));}
   void variable(std::string s, double d) {addEvent("[VARIABLE] " + s + " = " + std::to_string(d));}
   void variable(std::string s, bool b) {addEvent("[VARIABLE] " + s + " is " + (b ? "true" : "false"));}
+  void variable(std::string s, size_t z) {addEvent("[VARIABLE] " + s + " is " + std::to_string(z));}
   void error(std::string content) {addEvent(LogEvent("[ERROR] ", 0xD6280D, content));}
   void info(std::string content) {addEvent(LogEvent("[INFO] ", 0x1C77ED, content));}
   void success(std::string content) {addEvent(LogEvent("[SUCCESS] ", 0x08A124, content));}
   void dump(const std::map<std::string, std::string>& data, std::string title = "", bool quotes = false);
 
   void separator() {file <<"\n  <hr>";}
+  void flush() {file.flush();}
   void close();
+
+  std::string timestamp();
+
+  void setAutoFlushing(bool b) {alwaysFlush = b;}
 
   Logger(const Logger&) = delete;
   Logger& operator=(const Logger&) = delete;

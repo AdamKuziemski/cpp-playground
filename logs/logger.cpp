@@ -24,6 +24,9 @@ void Logger::addEvent(LogEvent e)
 {
   file <<"\n  <p><font color=#"<< adjustColor(e.getColor()) <<">"
        << e.getPrefix() << e.getContent() <<"</font></p>";
+
+  if(alwaysFlush)
+    flush();
 }
 
 void Logger::dump(const std::map<std::string, std::string>& data, std::string title, bool showQuotes)
